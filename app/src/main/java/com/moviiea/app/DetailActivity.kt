@@ -32,7 +32,7 @@ import java.util.Locale
  */
 class DetailActivity : AppCompatActivity() {
 
-    companion object {
+    private companion object {
         const val EXTRA_ID = "id"
         const val EXTRA_IS_MOVIE = "isMovie"
         const val EXTRA_TITLE = "title"
@@ -123,9 +123,8 @@ class DetailActivity : AppCompatActivity() {
         return arrayAdapter
     }
 
-    // FIXED: Used the official setter method instead of trying to reassign a 'val'
     private fun styleSpinner(spinner: Spinner) {
-        spinner.setPopupBackgroundDrawable(ColorDrawable(0xFF16305C.toInt()))
+        spinner.popupBackground = ColorDrawable(0xFF16305C.toInt())
     }
 
     private fun listener(onSelected: (Int) -> Unit): AdapterView.OnItemSelectedListener =
