@@ -32,7 +32,6 @@ import java.util.Locale
  */
 class DetailActivity : AppCompatActivity() {
 
-    // FIXED: Removed the word 'private' from this line
     companion object {
         const val EXTRA_ID = "id"
         const val EXTRA_IS_MOVIE = "isMovie"
@@ -124,8 +123,9 @@ class DetailActivity : AppCompatActivity() {
         return arrayAdapter
     }
 
+    // FIXED: Used the official setter method instead of trying to reassign a 'val'
     private fun styleSpinner(spinner: Spinner) {
-        spinner.popupBackground = ColorDrawable(0xFF16305C.toInt())
+        spinner.setPopupBackgroundDrawable(ColorDrawable(0xFF16305C.toInt()))
     }
 
     private fun listener(onSelected: (Int) -> Unit): AdapterView.OnItemSelectedListener =
@@ -243,8 +243,6 @@ class DetailActivity : AppCompatActivity() {
         Tmdb.checkUrl(PlayerLauncher.PLAYER_PAGE) { ok ->
             progress.visibility = View.GONE
             if (ok) {
-                // FIXED: If you still get a 'Val cannot be reassigned' error here, 
-                // go to PlayerLauncher.kt and make sure it says: var bridgeVerified = false
                 PlayerLauncher.bridgeVerified = true
                 PlayerLauncher.open(this, embed)
             } else {
